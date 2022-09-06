@@ -15,12 +15,12 @@ class ProducerController extends Controller
 
         $producers = Producer::select('name');
 
-        if($request->is_active == 1)
+        if(!$request->has('is_active') || $request->is_active == 'active')
         {
             $producers->active();
         }
 
-        if($request->has('is_active') && $request->is_active == 0)
+        if($request->has('is_active') && $request->is_active == 'not_active')
         {
             $producers->notActive();
         }
